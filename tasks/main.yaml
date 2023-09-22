@@ -10,7 +10,7 @@
   become: true
   include: enable_start_docker.yaml
 
-- name: Allow 'me' to user docker
+- name: Allow 'me' to use docker
   become: true
   ansible.builtin.user:
     name: "{{ me }}"
