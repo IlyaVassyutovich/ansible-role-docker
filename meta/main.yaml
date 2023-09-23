@@ -14,4 +14,7 @@ galaxy_info:
   galaxy_tags:
     - docker
 
-dependencies: []
+dependencies:
+  - name: iv.docker-friendly-firewall
+    src: https://github.com/IlyaVassyutovich/ansible-role-docker-friendly-firewall
+    version: v/1.0.1

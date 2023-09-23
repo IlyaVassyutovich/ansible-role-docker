@@ -1,0 +1,13 @@
+- name: Restart docker
+  become: true
+  ansible.builtin.service:
+    name: docker.service
+    state: restarted
+  listen: Restart containers infra
+
+- name: Restart containerd
+  become: true
+  ansible.builtin.service:
+    name: containerd.service
+    state: restarted
+  listen: Restart containers infra

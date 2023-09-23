@@ -1,3 +1,20 @@
-- name: Say hello
-  debug:
-    msg: "Hello from docker role!"
+- name: Configure docker facts
+  set_fact:
+    docker: "{{ docker_defaults | combine(docker | default({})) }}"
+
+- name: Setup/install docker
+  become: true
+  include: install_docker.yaml
+
+- name: Enable and start docker
+  become: true
+  include: enable_start_docker.yaml
+
+- name: Allow 'me' to use docker
+  become: true
+  ansible.builtin.user:
+    name: "{{ me }}"
+    append: true
+    groups:
+      - docker
+  when: me is defined

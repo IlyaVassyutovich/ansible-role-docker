@@ -1,0 +1,8 @@
+- name: Enable docker and container.d
+  ansible.builtin.service:
+    name: "{{ item }}"
+    enabled: true
+    state: started
+  with_items:
+    - docker.service
+    - containerd.service
