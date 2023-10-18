@@ -1,0 +1,1 @@
+{{- { "ipv6": docker.ipv6, "metrics-addr": (docker.metrics.listen_address ~ ":" ~ docker.metrics.listen_port) } | tojson(2) }}

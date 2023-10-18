@@ -1,10 +1,13 @@
-- name: Configure docker facts
-  set_fact:
-    docker: "{{ docker_defaults | combine(docker | default({})) }}"
+- name: Prepare facts
+  include: prepare_facts.yaml
 
 - name: Setup/install docker
   become: true
   include: install_docker.yaml
+
+- name: Configure docker
+  become: true
+  include: configure_docker.yaml
 
 - name: Enable and start docker
   become: true

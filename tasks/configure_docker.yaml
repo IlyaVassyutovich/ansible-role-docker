@@ -1,0 +1,9 @@
+- name: Render daemon.json
+  template:
+    src: ./daemon.json.j2
+    dest: /etc/docker/daemon.json
+    group: root
+    owner: root
+    mode: 0444
+  notify:
+    - Restart containers infra
