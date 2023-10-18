@@ -1,0 +1,8 @@
+- name: Prepare raw facts
+  set_fact:
+    __root: "{{ docker_defaults | combine(docker | default({})) }}"
+    __metrics: "{{ docker_defaults.metrics | combine(docker.metrics | default({})) }}"
+
+- name: Prepare docker facts
+  set_fact:
+    docker: "{{ __root | combine({ 'metrics': __metrics }) }}"
