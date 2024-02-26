@@ -1,0 +1,17 @@
+### This file is provisioned by Ansible ###
+### All changes directly to this file will be reverted ###
+
+[Unit]
+Description=Portainer
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=exec
+WorkingDirectory=/opt/portainer
+Environment=COMPOSE_PROJECT_NAME=portainer
+ExecStart=docker compose up --remove-orphans
+ExecStop=docker compose stop
+
+[Install]
+WantedBy=multi-user.target

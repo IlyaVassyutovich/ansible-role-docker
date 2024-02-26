@@ -13,6 +13,10 @@
   become: true
   include: enable_start_docker.yaml
 
+- name: Configure portainer
+  become: true
+  include: configure_portainer.yaml
+
 - name: Allow 'me' to use docker
   become: true
   ansible.builtin.user:

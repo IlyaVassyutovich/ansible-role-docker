@@ -1,0 +1,22 @@
+### This file is provisioned by Ansible ###
+### All changes directly to this file will be reverted ###
+
+version: "3"
+
+services:
+  portainer_agent:
+    image: {{ docker.portainer.image }}
+    hostname: portainer-agent
+    networks:
+      - portainer
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/lib/docker/volumes:/var/lib/docker/volumes
+    ports:
+      - target: 9001
+        published: {{ docker.portainer.port }}
+        protocol: tcp
+
+
+networks:
+  portainer:
