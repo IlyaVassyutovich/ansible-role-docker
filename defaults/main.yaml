@@ -4,3 +4,7 @@ docker_defaults:
   metrics:
     listen_address: 127.0.0.1
     listen_port: 9323
+  portainer:
+    install_dir: "/opt/portainer"
+    image: "portainer/agent:2.19.1-alpine"
+    port: 49612

@@ -11,3 +11,12 @@
     name: containerd.service
     state: restarted
   listen: Restart containers infra
+
+- name: Restart portainer
+  become: true
+  ansible.builtin.service:
+    name: portainer.service
+    state: restarted
+  listen:
+    - Restart containers infra
+    - Restart portainer

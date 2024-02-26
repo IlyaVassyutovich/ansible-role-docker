@@ -1,5 +1,6 @@
 - name: Prepare facts
   include: prepare_facts.yaml
+  tags: [ portainer ]
 
 - name: Setup/install docker
   become: true
@@ -12,6 +13,11 @@
 - name: Enable and start docker
   become: true
   include: enable_start_docker.yaml
+
+- name: Configure portainer
+  become: true
+  include: configure_portainer.yaml
+  tags: [ portainer ]
 
 - name: Allow 'me' to use docker
   become: true
