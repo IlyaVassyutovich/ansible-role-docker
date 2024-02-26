@@ -8,7 +8,7 @@ Requires=docker.service
 
 [Service]
 Type=exec
-WorkingDirectory=/opt/portainer
+WorkingDirectory={{ docker.portainer.install_dir }}
 Environment=COMPOSE_PROJECT_NAME=portainer
 ExecStart=docker compose up --remove-orphans
 ExecStop=docker compose stop

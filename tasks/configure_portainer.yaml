@@ -1,6 +1,6 @@
 - name: Ensure portainer's directory
   ansible.builtin.file:
-    path: /opt/portainer
+    path: "{{ docker.portainer.install_dir }}"
     state: directory
     owner: root
     group: root
@@ -9,7 +9,7 @@
 - name: Render portainer's compose
   ansible.builtin.template:
     src: ./portainer/docker-compose.yaml.j2
-    dest: /opt/portainer/docker-compose.yaml
+    dest: "{{ '/'.join((docker.portainer.install_dir, 'docker-compose.yaml')) }}"
     group: root
     owner: root
     mode: 0444
