@@ -1,20 +1,31 @@
 - name: Setup docker's apt key
+  become: true
   ansible.builtin.apt_key:
     url: "https://download.docker.com/linux/ubuntu/gpg"
     state: present
 
 - name: Setup docker's apt repository
+  become: true
   ansible.builtin.apt_repository:
     repo: "deb [arch={{ deb_architecture[ansible_architecture] }}] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
   register: apt_repo
 
 - name: Update apt's cache
+  become: true
   ansible.builtin.apt:
     update_cache: true
   when: apt_repo.changed
 
+  # Need this for CIFS-volumes to work properly with UTF-8
+- name: Setup extra kernel stuff (install)
+  become: true
+  ansible.builtin.apt:
+    name: linux-image-extra-virtual
+    state: present
+
 - name: Setup docker's package (install)
+  become: true
   ansible.builtin.apt:
     name: "docker-ce={{ docker.version }}"
     state: present
@@ -22,6 +33,7 @@
     - Restart containers infra
 
 - name: Hold docker's packages
+  become: true
   ansible.builtin.dpkg_selections:
     name: "{{ item }}"
     selection: hold

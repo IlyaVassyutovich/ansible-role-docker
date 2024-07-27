@@ -1,4 +1,5 @@
 - name: Ensure portainer's directory
+  become: true
   ansible.builtin.file:
     path: "{{ docker.portainer.install_dir }}"
     state: directory
@@ -7,6 +8,7 @@
     mode: "0555"
 
 - name: Render portainer's compose
+  become: true
   ansible.builtin.template:
     src: ./portainer/docker-compose.yaml.j2
     dest: "{{ '/'.join((docker.portainer.install_dir, 'docker-compose.yaml')) }}"
@@ -16,6 +18,7 @@
   notify: Restart portainer
 
 - name: Render portainer's unit file
+  become: true
   ansible.builtin.template:
     src: ./portainer/service.j2
     dest: /etc/systemd/system/portainer.service
@@ -26,11 +29,13 @@
   register: render_portainer_unit
 
 - name: Reload systemd
+  become: true
   ansible.builtin.systemd:
     daemon_reload: true
   when: render_portainer_unit.changed
 
 - name: Enable portainer
+  become: true
   ansible.builtin.service:
     name: portainer.service
     enabled: true
