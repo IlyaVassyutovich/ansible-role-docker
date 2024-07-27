@@ -17,6 +17,13 @@
     update_cache: true
   when: apt_repo.changed
 
+  # Need this for CIFS-volumes to work properly with UTF-8
+- name: Setup extra kernel stuff (install)
+  become: true
+  ansible.builtin.apt:
+    name: linux-image-extra-virtual
+    state: present
+
 - name: Setup docker's package (install)
   become: true
   ansible.builtin.apt:
