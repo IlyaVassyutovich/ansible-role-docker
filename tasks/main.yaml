@@ -1,18 +1,18 @@
 - name: Prepare facts
-  ansible.builtin.include_tasks: prepare_facts.yaml
+  ansible.builtin.import_tasks: prepare_facts.yaml
   tags: [ portainer ]
 
 - name: Setup/install docker
-  ansible.builtin.include_tasks: install_docker.yaml
+  ansible.builtin.import_tasks: install_docker.yaml
 
 - name: Configure docker
-  ansible.builtin.include_tasks: configure_docker.yaml
+  ansible.builtin.import_tasks: configure_docker.yaml
 
 - name: Enable and start docker
-  ansible.builtin.include_tasks: enable_start_docker.yaml
+  ansible.builtin.import_tasks: enable_start_docker.yaml
 
 - name: Configure portainer
-  ansible.builtin.include_tasks: configure_portainer.yaml
+  ansible.builtin.import_tasks: configure_portainer.yaml
   tags: [ portainer ]
 
 - name: Allow 'me' to use docker
