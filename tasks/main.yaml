@@ -11,6 +11,9 @@
 - name: Enable and start docker
   ansible.builtin.import_tasks: enable_start_docker.yaml
 
+- name: Add provision fact
+  ansible.builtin.import_tasks: mark_host_as_docker_provisioned.yaml
+
 - name: Configure portainer
   ansible.builtin.import_tasks: configure_portainer.yaml
   tags: [ portainer ]
