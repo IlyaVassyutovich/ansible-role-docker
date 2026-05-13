@@ -39,6 +39,7 @@
     selection: hold
   with_items:
     - docker-ce
+    - docker-ce-rootless-extras
     - docker-ce-cli
     - containerd.io
     - docker-buildx-plugin
