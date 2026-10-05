@@ -1,5 +1,5 @@
 docker_defaults:
-  version: "5:29.4.3-1~ubuntu.24.04~noble"
+  version: "5:29.8.2-1~ubuntu.24.04~noble"
   ipv6: false
   metrics:
     listen_address: 127.0.0.1
