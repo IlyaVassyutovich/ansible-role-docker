@@ -4,9 +4,9 @@
     name: docker
     types: deb
     uris: https://download.docker.com/linux/ubuntu
-    suites: '{{ ansible_distribution_release }}'
+    suites: '{{ ansible_facts.distribution_release }}'
     components: stable
-    architectures: '{{ deb_architecture[ansible_architecture] }}'
+    architectures: '{{ deb_architecture[ansible_facts.architecture] }}'
     signed_by: https://download.docker.com/linux/ubuntu/gpg
   register: apt_repo
 
